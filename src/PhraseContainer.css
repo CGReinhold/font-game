@@ -36,8 +36,8 @@
   font-size: .9rem;
   font-variant-caps: all-small-caps;
   font-family: sans-serif;
-  color: red;
-  text-shadow: 0px 0px 5px red;
+  color: var(--neon);
+  text-shadow: 0px 0px 5px var(--neon);
 }
 
 .phrase {

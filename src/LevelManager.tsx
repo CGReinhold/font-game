@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './LevelManager.css';
 import CodeInput from './CodeInput';
-import { LEVELS, LEVEL_DESCRIPTIONS } from './Contants';
+import { LEVELS, LEVEL_DESCRIPTIONS, COLORS } from './Contants';
 
 interface LevelManagerProps {
   level: number;
@@ -18,7 +18,13 @@ const LevelManager: React.FC<LevelManagerProps> = ({ level, onNext, onPrevious})
 
   const won = level === LEVELS.length && showResult;
 
+  useEffect(() => {
+    document.documentElement.style.setProperty('--neon', COLORS[level]);
+  }, [level]);
+
   const handleNext = () => {
+    if (won) return;
+    
     setShowResult(false);
     setInput('');
     onNext();
@@ -37,6 +43,8 @@ const LevelManager: React.FC<LevelManagerProps> = ({ level, onNext, onPrevious})
   }
 
   const handleValidate = () => {
+    if (won) return;
+
     if (isValid()) {
       setWasWrong(false);
       setShowResult(true);

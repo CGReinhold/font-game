@@ -44,3 +44,27 @@ export const LEVEL_DESCRIPTIONS = [
   '20',
   '21',
 ];
+
+export const COLORS = [
+  '#ff0000',
+  '#ff4d00',
+  '#ff9900',
+  '#ffe600',
+  '#ccff00',
+  '#80ff00',
+  '#33ff00',
+  '#00ff19',
+  '#00ff66',
+  '#00ffb3',
+  '#00ffff',
+  '#00b2ff',
+  '#0066ff',
+  '#0019ff',
+  '#3300ff',
+  '#8000ff',
+  '#cc00ff',
+  '#ff00e5',
+  '#ff0099',
+  '#ff004d',
+  '#ff0000',
+];
