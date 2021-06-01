@@ -1,0 +1,72 @@
+.level1 {
+  font-family: sans-serif;
+}
+
+.level2 {
+  color: white;
+}
+
+.level3 {
+  font-size: 20px;
+}
+
+.level4 {
+  text-transform: uppercase;
+}
+
+.level5 {
+  font-kerning: none;
+}
+
+.level6 {
+  font-variant-caps: all-small-caps;
+}
+
+.level7 {
+  font-weight: bold;
+}
+
+.level8 {
+  font-style: italic;
+}
+
+.level9 {
+  text-decoration: underline;
+}
+
+.level10 {
+  letter-spacing: 1px;
+}
+
+.level11 {
+  word-spacing: 5px;
+}
+
+.level12 {
+  line-height: 1.5;
+}
+
+.level13 {
+  text-indent: 20px;
+}
+
+.level14 {
+  text-align: center;
+}
+
+.level15 {
+  direction: rtl;
+}
+
+.level16 {
+  text-shadow: 1px 1px lightgray;
+}
+
+.level17 {
+  text-emphasis: triangle;
+}
+
+.level18 {
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+}
