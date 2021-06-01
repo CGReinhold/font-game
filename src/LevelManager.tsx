@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './LevelManager.css';
 import CodeInput from './CodeInput';
 import { LEVELS, LEVEL_DESCRIPTIONS } from './Contants';
@@ -9,12 +9,14 @@ interface LevelManagerProps {
   onPrevious: () => void;
 }
 
-const NO_LEVEL_DESCRIPTION = 'This is a game about css font attributes.';
+const NO_LEVEL_DESCRIPTION = 'This is a game about css font attributes. Can you guess the right CSS attribute to give the text on the right the new style?';
 
 const LevelManager: React.FC<LevelManagerProps> = ({ level, onNext, onPrevious}) => {
   const [input, setInput] = useState<string>('');
   const [showResult, setShowResult] = useState<boolean>(false);
   const [wasWrong, setWasWrong] = useState<boolean>(false);
+
+  const won = level === LEVELS.length && showResult;
 
   const handleNext = () => {
     setShowResult(false);
@@ -47,7 +49,7 @@ const LevelManager: React.FC<LevelManagerProps> = ({ level, onNext, onPrevious})
     setInput(LEVELS[level - 1]);
     setShowResult(true);
     setWasWrong(false);
-  }
+  };
 
   return (
     <>
@@ -68,10 +70,16 @@ const LevelManager: React.FC<LevelManagerProps> = ({ level, onNext, onPrevious})
           <CodeInput input={input} onInput={setInput} level={level} />
           <section className="buttons">
             {level > 0 && <button className="arrow" onClick={handlePrevious}>{'<'}</button>}
-            <button onClick={handleValidate}>Check</button>
-            {level < 18 && <button className="arrow" onClick={handleNext}>{'>'}</button>}
+            {!showResult ? (
+              <button onClick={handleValidate}>Check</button>
+            ) : (
+              <button onClick={handleNext}>{won ? 'You won!' : 'Next'}</button>
+            )}
+            {level < LEVELS.length && <button className="arrow" onClick={handleNext}>{'>'}</button>}
           </section>
-          <button className="help-buton" onClick={handleHelp}>Give me the solution</button>
+          {!won && (
+            <button className="help-buton" onClick={handleHelp}>Give me the solution</button>
+          )}
         </>
       )}
     </>

@@ -13,10 +13,10 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <div className="content">
-        <h2 className="title">Font game</h2>
+        <h2 className="title">Font Challenge</h2>
         <LevelManager level={level} onNext={onNext} onPrevious={onPrevious} />
         <div className="links">
-          <a href="https://cgreinhold.dev">cgreinhold.dev</a> • <a href="https://github.com/CGReinhold">Github</a>
+          <a href="https://cgreinhold.dev">cgreinhold.dev</a> • <a href="https://github.com/CGReinhold/font-game">Github</a>
         </div>
       </div>
       <PhraseContainer level={level} />

@@ -55,18 +55,27 @@
 }
 
 .level15 {
-  direction: rtl;
-}
-
-.level16 {
   text-shadow: 1px 1px lightgray;
 }
 
+.level16 {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .level17 {
-  text-emphasis: triangle;
+  direction: rtl;
 }
 
 .level18 {
+  text-emphasis: triangle;
+}
+
+.level19 {
   writing-mode: vertical-lr;
+}
+
+.level20 {
   text-orientation: upright;
 }

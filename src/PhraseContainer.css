@@ -50,8 +50,17 @@
   flex: 1;
 }
 
+.phrase p {
+  width: 430px;
+  height: 200px;
+}
+
 .previous {
   display: none;
+}
+
+.previous, .current {
+  height: 180px;
 }
 
 .phrase:hover .previous {

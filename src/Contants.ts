@@ -13,10 +13,12 @@ export const LEVELS = [
   'line-height: 1.5;',
   'text-indent: 20px;',
   'text-align: center;',
-  'direction: rtl;',
   'text-shadow: 1px 1px lightgray;',
+  'overflow: hidden;\nwhite-space: nowrap;\ntext-overflow: ellipsis;',
+  'direction: rtl;',
   'text-emphasis: triangle;',
-  'writing-mode: vertical-lr;\ntext-orientation: upright;',
+  'writing-mode: vertical-lr;',
+  'text-orientation: upright;',
 ];
 
 export const LEVEL_DESCRIPTIONS = [
@@ -39,4 +41,6 @@ export const LEVEL_DESCRIPTIONS = [
   '17',
   '18',
   '19',
+  '20',
+  '21',
 ];

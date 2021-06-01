@@ -23,7 +23,9 @@ const CodeInput: React.FC<CodeInputProps> = ({ level, input, onInput }) => {
           <span key={level}>{level}</span>
         ))}
       </p>
-      <input autoFocus placeholder="your style" value={input} onChange={handleInput} />
+      {level < LEVELS.length + 1 && (
+        <input autoFocus placeholder="your style" value={input} onChange={handleInput} />
+      )}
       <p className="code-end">
         {`}`}
       </p>
