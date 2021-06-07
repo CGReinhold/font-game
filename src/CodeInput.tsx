@@ -1,17 +1,24 @@
 import React from 'react';
 import './CodeInput.css';
-import { LEVELS } from './Contants';
+import { LEVELS } from './Constants';
 
 interface CodeInputProps {
   input: string;
   level: number;
   onInput: (input: string) => void;
+  onEnter: () => void;
 }
 
-const CodeInput: React.FC<CodeInputProps> = ({ level, input, onInput }) => {
+const CodeInput: React.FC<CodeInputProps> = ({ level, input, onInput, onEnter }) => {
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     onInput(e.target.value);
-  }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      onEnter();
+    }
+  };
 
   return (
     <section className="input-container">
@@ -24,7 +31,13 @@ const CodeInput: React.FC<CodeInputProps> = ({ level, input, onInput }) => {
         ))}
       </p>
       {level < LEVELS.length + 1 && (
-        <input autoFocus placeholder="your style" value={input} onChange={handleInput} />
+        <input
+          autoFocus
+          placeholder="your style"
+          value={input}
+          onChange={handleInput}
+          onKeyDown={handleKeyDown}
+        />
       )}
       <p className="code-end">
         {`}`}

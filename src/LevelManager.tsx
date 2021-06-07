@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './LevelManager.css';
 import CodeInput from './CodeInput';
-import { LEVELS, LEVEL_DESCRIPTIONS, COLORS } from './Contants';
+import { LEVELS, LEVEL_DESCRIPTIONS, COLORS } from './Constants';
 
 interface LevelManagerProps {
   level: number;
@@ -59,13 +59,18 @@ const LevelManager: React.FC<LevelManagerProps> = ({ level, onNext, onPrevious})
     setWasWrong(false);
   };
 
+  const handleInput = (input: string) => {
+    setInput(input);
+    setWasWrong(false);
+  }
+
   return (
     <>
       <section className="level-description">
-        <p>
+        <div>
           {level === 0 && NO_LEVEL_DESCRIPTION}
           {level > 0 && showResult && LEVEL_DESCRIPTIONS[level - 1]}
-        </p>
+        </div>
       </section>
       {wasWrong && <p>You got it wrong. Try again</p>}
       {level === 0 && (
@@ -75,7 +80,7 @@ const LevelManager: React.FC<LevelManagerProps> = ({ level, onNext, onPrevious})
       )}
       {level > 0 && (
         <>
-          <CodeInput input={input} onInput={setInput} level={level} />
+          <CodeInput input={input} onInput={handleInput} level={level} onEnter={handleValidate} />
           <section className="buttons">
             {level > 0 && <button className="arrow" onClick={handlePrevious}>{'<'}</button>}
             {!showResult ? (
