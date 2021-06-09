@@ -14,7 +14,7 @@ export const LEVELS = [
   'text-indent: 20px;',
   'text-align: center;',
   'text-shadow: 1px 1px lightgray;',
-  'overflow: hidden;white-space: nowrap;text-overflow: ellipsis;',
+  ['overflow: hidden;','white-space: nowrap;','text-overflow: ellipsis;'],
   'direction: rtl;',
   'text-emphasis: triangle;',
   'writing-mode: vertical-lr;',

@@ -10,15 +10,30 @@ interface CodeInputProps {
 }
 
 const CodeInput: React.FC<CodeInputProps> = ({ level, input, onInput, onEnter }) => {
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onInput(e.target.value);
+  const levelSize = typeof LEVELS[level - 1] === 'string' ? 1 : LEVELS[level - 1].length;
+
+  const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const value = e.target.value.split('\n').length > levelSize
+     ? e.target.value.replace(/\n+$/, '')
+     : e.target.value;
+    onInput(value);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+  const handleKeyUp = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
       onEnter();
     }
   };
+  
+  const renderLevelResult = (level: string | string[]) => {
+    if (typeof level === 'string') {
+      return <span key={level}>{level}</span>
+    } else {
+      return level.map(l => (
+        <span key={l}>{l}</span>
+      ));
+    }
+  }
 
   return (
     <section className="input-container">
@@ -26,17 +41,17 @@ const CodeInput: React.FC<CodeInputProps> = ({ level, input, onInput, onEnter })
         {`.phrase {`}
       </p>
       <p>
-        {LEVELS.slice(0, level - 1).map(level => (
-          <span key={level}>{level}</span>
-        ))}
+        {LEVELS.slice(0, level - 1).map(renderLevelResult)}
       </p>
       {level < LEVELS.length + 1 && (
-        <input
+        <textarea
           autoFocus
           placeholder="your style"
-          value={input}
+          value={input}          
           onChange={handleInput}
-          onKeyDown={handleKeyDown}
+          onKeyUp={handleKeyUp}
+          rows={levelSize}
+          
         />
       )}
       <p className="code-end">

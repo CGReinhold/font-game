@@ -9,7 +9,7 @@ body {
   justify-content: center;
 }
 
-.App {
+.game {
   margin: auto;
   color: #ddd;
   display: flex;
@@ -27,7 +27,7 @@ body {
 .content {
   margin: 20px;
   padding: 0px 40px 26px;
-  min-width: 500px;
+  max-width: 420px;
   display: flex;
   flex-direction: column;
   align-self: stretch;
@@ -51,4 +51,14 @@ body {
 .links a {
   color: lightgray;
   padding: 0 10px;
+}
+
+.mobile {
+  opacity: 0.8;
+}
+
+@media (max-width: 1200px) {
+  .game {
+    flex-direction: column;
+  }
 }

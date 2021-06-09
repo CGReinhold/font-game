@@ -36,14 +36,30 @@ const LevelManager: React.FC<LevelManagerProps> = ({ level, onNext, onPrevious})
     onPrevious();
   }
 
-  const isValid = () => {
-    const parsedInput = input.replaceAll(' ', '').replace(';', '').toUpperCase();
-    const parsedValidResult = LEVELS[level - 1].replaceAll(' ', '').replace(';', '').toUpperCase();
+  const compareWords = (first: string, second: string): boolean => {
+    const parsedInput = first.replaceAll(' ', '').replace(';', '').toUpperCase();
+    const parsedValidResult = second.replaceAll(' ', '').replace(';', '').toUpperCase();
+
     return parsedInput === parsedValidResult;
   }
 
+  const isValid = (): boolean => {
+    const result = LEVELS[level - 1];
+    if (typeof result === 'string') {
+      return compareWords(input, result);
+    } else {
+      const lines = input.split('\n');
+      return result.every(r => lines.some(l => compareWords(r, l)));
+    }
+  }
+
   const handleValidate = () => {
-    if (won) return;
+    if (won || !input) return;
+
+    if (showResult) {
+      handleNext();
+      return;
+    }
 
     if (isValid()) {
       setWasWrong(false);
@@ -54,7 +70,8 @@ const LevelManager: React.FC<LevelManagerProps> = ({ level, onNext, onPrevious})
   };
 
   const handleHelp = () => {
-    setInput(LEVELS[level - 1]);
+    const result = LEVELS[level - 1];
+    setInput(typeof result === 'string' ? result : result.join('\n'));
     setShowResult(true);
     setWasWrong(false);
   };
