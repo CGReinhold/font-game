@@ -29,7 +29,7 @@ const LEVEL_DESCRIPTIONS = [
   </>,
   <p>The <i>text-shadow</i> property is the way of adding a shadow to your text. It works similarly to the <i>box-shaddow</i> property.</p>,
   <>
-    <p>The <i>text-overflow</i> property is how you add the a proper content for the overflowing text.</p>
+    <p>The <i>text-overflow</i> property is how you add a proper content for the overflowing text, such as the ellipsis.</p>
     <p>This must be used with the <i>overflow: hidden</i> and <i>white-space: nowrap</i> to have any effect, but will allow you to use a proper ellipsis on the overflow text without the necessity of any JavaScript parsing.</p>
   </>,
   <p>The <i>direction</i> property will define in which direction the text goes, being it <i>ltr</i> (left to right) or <i>rtl</i> (right to left).</p>,
