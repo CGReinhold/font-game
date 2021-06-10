@@ -57,6 +57,19 @@ body {
   opacity: 0.8;
 }
 
+.languages button {
+  background: none;
+  border: none;
+  color: #888888;
+  padding: 4px 6px;
+  margin: 0 4px;
+  cursor: pointer;
+}
+
+.languages button.selected {
+  border: 1px dotted #888888;
+}
+
 @media (max-width: 1200px) {
   .game {
     flex-direction: column;

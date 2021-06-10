@@ -1,20 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import './LevelManager.css';
 import CodeInput from './CodeInput';
-import { LEVELS, LEVEL_DESCRIPTIONS, COLORS } from './Constants';
+import { LEVELS, COLORS } from './Constants';
+import { Languages } from './Languages';
+import { useLabels } from './useLabels';
 
 interface LevelManagerProps {
+  language: Languages;
   level: number;
   onNext: () => void;
   onPrevious: () => void;
 }
 
-const NO_LEVEL_DESCRIPTION = 'This is a game about css font attributes. Can you guess the right CSS attribute to give the text on the right the new style?';
-
-const LevelManager: React.FC<LevelManagerProps> = ({ level, onNext, onPrevious}) => {
+const LevelManager: React.FC<LevelManagerProps> = ({ level, language, onNext, onPrevious}) => {
   const [input, setInput] = useState<string>('');
   const [showResult, setShowResult] = useState<boolean>(false);
   const [wasWrong, setWasWrong] = useState<boolean>(false);
+  const {
+    LEVEL_DESCRIPTIONS,
+    NO_LEVEL_DESCRIPTION,
+    START_BUTTON,
+    NEXT_BUTTON,
+    CHECK_BUTTON,
+    GIVE_SOLUTION_BUTTON,
+    YOU_WON,
+  } = useLabels(language);
+
 
   const won = level === LEVELS.length && showResult;
 
@@ -92,7 +103,7 @@ const LevelManager: React.FC<LevelManagerProps> = ({ level, onNext, onPrevious})
       {wasWrong && <p>You got it wrong. Try again</p>}
       {level === 0 && (
         <section className="buttons">
-          <button onClick={handleNext}>{'Start'}</button>
+          <button onClick={handleNext}>{START_BUTTON}</button>
         </section>
       )}
       {level > 0 && (
@@ -101,14 +112,14 @@ const LevelManager: React.FC<LevelManagerProps> = ({ level, onNext, onPrevious})
           <section className="buttons">
             {level > 0 && <button className="arrow" onClick={handlePrevious}>{'<'}</button>}
             {!showResult ? (
-              <button onClick={handleValidate}>Check</button>
+              <button onClick={handleValidate}>{CHECK_BUTTON}</button>
             ) : (
-              <button onClick={handleNext}>{won ? 'You won!' : 'Next'}</button>
+              <button onClick={handleNext}>{won ? YOU_WON : NEXT_BUTTON}</button>
             )}
             {level < LEVELS.length && <button className="arrow" onClick={handleNext}>{'>'}</button>}
           </section>
           {!won && (
-            <button className="help-buton" onClick={handleHelp}>Give me the solution</button>
+            <button className="help-buton" onClick={handleHelp}>{GIVE_SOLUTION_BUTTON}</button>
           )}
         </>
       )}
